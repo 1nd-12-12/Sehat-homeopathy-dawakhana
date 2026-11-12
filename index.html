@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi" data-theme="light">
 <head>
@@ -80,7 +81,7 @@
   </header>
 
   <!-- ===================================================================== -->
-  <!-- 1. HERO SECTION (Inspired by Official Clinic Banner Identity)         -->
+  <!-- 1. HERO SECTION                                                       -->
   <!-- ===================================================================== -->
   <section id="home" class="hero-section">
     <div class="hero-overlay"></div>
@@ -239,7 +240,7 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- 3. TREATMENT CATEGORIES (10 REQUIRED CATEGORIES WITH DETAILS MODAL)   -->
+  <!-- 3. TREATMENT CATEGORIES                                               -->
   <!-- ===================================================================== -->
   <section id="treatments" class="section treatments-section">
     <div class="container">
@@ -254,7 +255,7 @@
         <div class="title-underline"></div>
       </div>
 
-      <!-- 10 Treatment Cards Rendered Dynamically via script.js for Clean Bilingual Support -->
+      <!-- Treatments Grid rendered dynamically by script.js -->
       <div class="treatments-grid" id="treatments-grid"></div>
 
       <div class="clinical-note-box">
@@ -267,7 +268,7 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- 4. ADVANCED APPOINTMENT BOOKING SYSTEM                                -->
+  <!-- 4. APPOINTMENT BOOKING SYSTEM                                         -->
   <!-- ===================================================================== -->
   <section id="appointment" class="section appointment-section">
     <div class="container">
@@ -309,4 +310,50 @@
           </div>
         </div>
 
-        <form id="appointment-form" class="appointment-form" nova
+        <form id="appointment-form" class="appointment-form">
+          <div class="form-group">
+            <label for="patient-name" data-hi="रोगी का पूरा नाम *" data-en="Patient Full Name *">रोगी का पूरा नाम *</label>
+            <input type="text" id="patient-name" required placeholder="अपना पूरा नाम दर्ज करें" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patient-phone" data-hi="मोबाइल नंबर *" data-en="Mobile Number *">मोबाइल नंबर *</label>
+              <input type="tel" id="patient-phone" required placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" />
+            </div>
+            <div class="form-group">
+              <label for="consult-time" data-hi="परामर्श का समय चुनें" data-en="Select Consultation Slot">परामर्श का समय चुनें</label>
+              <select id="consult-time">
+                <option value="morning">सुबह (9 बजे से पहले)</option>
+                <option value="evening">शाम (4 बजे के बाद)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="health-issue" data-hi="स्वास्थ्य समस्या का विवरण *" data-en="Health Issue Description *">स्वास्थ्य समस्या का विवरण *</label>
+            <textarea id="health-issue" rows="4" required placeholder="अपनी समस्या या लक्षण यहाँ लिखें..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-gold btn-block">
+              🚀 <span data-hi="अपॉइंटमेंट अनुरोध भेजें" data-en="Submit Appointment Request">अपॉइंटमेंट अनुरोध भेजें</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 सेहत होम्योपैथी दवाखाना (SEHAT HOMOEOPATHY DAWAKHANA) • डॉ. इस्लाम (B.H.M.S.)</p>
+      <p>पता: अहवर, शेख आलम, गंज बाजार | संपर्क: 9473298951</p>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
