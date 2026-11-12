@@ -402,6 +402,16 @@ body {
   color: #ffffff;
 }
 
+.btn-outline-success {
+  background: transparent;
+  border: 2px solid #16a34a;
+  color: #16a34a;
+}
+.btn-outline-success:hover {
+  background: #16a34a;
+  color: #ffffff;
+}
+
 .hero-meta-strip {
   display: flex;
   gap: 20px;
@@ -430,11 +440,27 @@ body {
   font-size: 0.9rem;
 }
 
-.hero-illustration {
-  width: 100%;
-  max-height: 280px;
-  object-fit: cover;
-  padding: 15px;
+.poster-graphic-box {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, rgba(13, 92, 61, 0.05), rgba(217, 119, 6, 0.1));
+}
+
+.poster-main-icon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.poster-graphic-box h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-green);
+  margin-bottom: 5px;
+}
+
+.poster-graphic-box p {
+  font-weight: 700;
+  color: var(--accent-gold);
 }
 
 .poster-footer-strip {
@@ -448,16 +474,12 @@ body {
   font-size: 1.1rem;
 }
 
-.poster-doc-line {
-  font-size: 0.85rem;
-  margin: 4px 0;
-}
-
 .poster-slogan-badge {
   font-style: italic;
   font-weight: 700;
   font-size: 0.9rem;
   color: #b45309;
+  margin-top: 5px;
 }
 
 /* Medical Disclaimer Banner */
@@ -471,9 +493,7 @@ body {
   color: var(--text-dark);
 }
 
-/* ========================================================================== */
-/* SECTION STYLES & COMMON HEADINGS                                           */
-/* ========================================================================== */
+/* Section Header */
 .section {
   padding: 70px 0;
 }
@@ -520,9 +540,7 @@ body {
   border-radius: 2px;
 }
 
-/* ========================================================================== */
-/* ABOUT SECTION                                                              */
-/* ========================================================================== */
+/* About Section */
 .about-grid {
   display: grid;
   grid-template-columns: 380px 1fr;
@@ -670,9 +688,7 @@ body {
   margin: 0;
 }
 
-/* ========================================================================== */
-/* TREATMENTS SECTION (10 CARDS GRID)                                         */
-/* ========================================================================== */
+/* Treatments Section */
 .treatments-section {
   background: rgba(13, 92, 61, 0.03);
 }
@@ -684,7 +700,6 @@ body {
   margin-bottom: 40px;
 }
 
-/* Treatment Card Dynamic Style */
 .treatment-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -768,9 +783,7 @@ body {
   margin: 0;
 }
 
-/* ========================================================================== */
-/* APPOINTMENT SECTION                                                        */
-/* ========================================================================== */
+/* Appointment Section */
 .appointment-wrapper {
   display: grid;
   grid-template-columns: 350px 1fr;
@@ -876,14 +889,174 @@ body {
   gap: 20px;
 }
 
-/* ========================================================================== */
-/* FOOTER                                                                     */
-/* ========================================================================== */
+/* Gallery Section */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.gallery-item {
+  text-align: center;
+  padding: 30px;
+}
+
+.gallery-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.gallery-item h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.gallery-item p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* FAQ Section */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-question {
+  padding: 20px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  padding: 0 20px 20px 20px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  display: none;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+/* Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.testimonial-card {
+  padding: 30px;
+}
+
+.stars {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.testimonial-text {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.testimonial-author {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+}
+
+/* Contact Section */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.contact-details-list {
+  list-style: none;
+  margin: 20px 0;
+}
+
+.contact-details-list li {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.contact-quick-btns {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.map-card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.map-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+/* Floating WhatsApp */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+/* Footer */
 .footer {
   background: var(--text-dark);
   color: #ffffff;
-  padding: 40px 0;
+  padding: 50px 0;
   text-align: center;
+}
+
+.footer-brand {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
 }
 
 .footer-content p {
@@ -892,29 +1065,29 @@ body {
   opacity: 0.85;
 }
 
-/* ========================================================================== */
-/* MOBILE RESPONSIVE MEDIA QUERIES                                            */
-/* ========================================================================== */
+.footer-links {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--accent-gold-light);
+}
+
+/* Responsive Media Queries */
 @media (max-width: 992px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .hero-cta-group {
-    justify-content: center;
-  }
-
-  .hero-meta-strip {
-    justify-content: center;
-  }
-
-  .about-grid {
+  .hero-grid, .about-grid, .appointment-wrapper, .contact-grid, .testimonials-grid {
     grid-template-columns: 1fr;
   }
-
-  .appointment-wrapper {
-    grid-template-columns: 1fr;
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -933,57 +1106,26 @@ body {
     gap: 15px;
     text-align: center;
   }
-
   .nav-links.active {
     display: flex;
   }
-
   .mobile-menu-btn {
     display: block;
   }
-
   .hero-clinic-name {
     font-size: 2.2rem;
   }
-
   .section-title {
     font-size: 1.8rem;
   }
-
-  .pillars-grid {
+  .pillars-grid, .gallery-grid {
     grid-template-columns: 1fr;
   }
-
   .form-row {
     grid-template-columns: 1fr;
     gap: 0;
   }
-
   .treatments-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-clinic-name {
-    font-size: 1.8rem;
-  }
-  
-  .brand-title-hi {
-    font-size: 0.95rem;
-  }
-
-  .brand-title-en {
-    font-size: 0.55rem;
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .hero-cta-group {
-    flex-direction: column;
-    width: 100%;
   }
 }
