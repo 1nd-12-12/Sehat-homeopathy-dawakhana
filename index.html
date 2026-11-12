@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="hi" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>सेहत होम्योपैथी दवाखाना | डॉ. इस्लाम (B.H.M.S.) - SEHAT HOMOEOPATHY DAWAKHANA</title>
-  <meta name="description" content="सेहत होम्योपैथी दवाखाना (SEHAT HOMOEOPATHY DAWAKHANA) - डॉ. इस्लाम, B.H.M.S. (होम्योपैथी)। स्वस्थ जीवन... सुखी जीवन... हल्की दवा... गहरा असर... पता: अहवर, शेख आलम, गंज बाजार।" />
-  <meta name="keywords" content="सेहत होम्योपैथी दवाखाना, SEHAT HOMOEOPATHY DAWAKHANA, डॉ. इस्लाम, Dr. Islam BHMS, Homoeopathy Clinic Ganj Bazar, Ahwar Sheikh Alam" />
-  <meta name="author" content="सेहत होम्योपैथी दवाखाना" />
-
-  <!-- Google Fonts for Crisp Hindi (Devanagari) & Modern English Typography -->
+  <meta name="description" content="सेहत होम्योपैथी दवाखाना (SEHAT HOMOEOPATHY DAWAKHANA) - डॉ. इस्लाम, B.H.M.S. (होम्योपैथी)। स्वस्थ जीवन... सुखी जीवन... हल्की दवा... गहरा असर..." />
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -19,7 +16,7 @@
 </head>
 <body>
 
-  <!-- Floating Herbal Leaves Background Animation -->
+  <!-- Floating Herbal Leaves Animation -->
   <div class="floating-leaves" aria-hidden="true">
     <span class="leaf leaf-1">🌿</span>
     <span class="leaf leaf-2">🍃</span>
@@ -28,28 +25,28 @@
     <span class="leaf leaf-5">🌿</span>
   </div>
 
-  <!-- Top Announcement / Timing Bar -->
+  <!-- Top Timing Bar -->
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-timing">
         <span>🕒</span>
-        <span data-hi="परामर्श समय: सुबह 9 बजे से पहले एवं शाम 4 बजे के बाद।" data-en="Consultation Timing: Before 9:00 AM and After 4:00 PM.">
+        <span id="top-timing-text" data-hi="परामर्श समय: सुबह 9 बजे से पहले एवं शाम 4 बजे के बाद।" data-en="Consultation Timing: Before 9:00 AM and After 4:00 PM.">
           परामर्श समय: सुबह 9 बजे से पहले एवं शाम 4 बजे के बाद।
         </span>
       </div>
       <div class="top-contacts">
-        <a href="tel:+919473298951" class="top-link" id="top-phone-1">📞 9473298951</a>
+        <a href="tel:+919473298951" class="top-link">📞 9473298951</a>
         <span class="divider">|</span>
-        <a href="tel:+916202405701" class="top-link" id="top-phone-2">📞 916202405701</a>
+        <a href="tel:+91916202405701" class="top-link">📞 916202405701</a>
       </div>
     </div>
   </div>
 
-  <!-- Sticky Glassmorphism Navigation Bar -->
+  <!-- Navigation Bar -->
   <header class="navbar" id="navbar">
     <div class="container nav-container">
       <a href="#home" class="brand">
-        <img src="assets/logo.svg" alt="सेहत होम्योपैथी दवाखाना लोगो" class="brand-logo" />
+        <img src="assets/logo.svg" alt="सेहत होम्योपैथी दवाखाना लोगो" class="brand-logo" id="brand-logo-img" />
         <div class="brand-text">
           <span class="brand-title-hi">सेहत होम्योपैथी दवाखाना</span>
           <span class="brand-title-en">SEHAT HOMOEOPATHY DAWAKHANA</span>
@@ -70,7 +67,7 @@
         <button id="lang-toggle" class="control-btn" aria-label="Switch Language" title="Switch Hindi / English">
           🌐 <span id="lang-label">EN</span>
         </button>
-        <button id="theme-toggle" class="control-btn" aria-label="Toggle Dark/Light Theme" title="Toggle Theme">
+        <button id="theme-toggle" class="control-btn" aria-label="Toggle Theme" title="Toggle Theme">
           🌙
         </button>
         <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open Navigation Menu">
@@ -80,9 +77,7 @@
     </div>
   </header>
 
-  <!-- ===================================================================== -->
-  <!-- 1. HERO SECTION                                                       -->
-  <!-- ===================================================================== -->
+  <!-- Hero Section -->
   <section id="home" class="hero-section">
     <div class="hero-overlay"></div>
     <div class="container hero-grid">
@@ -114,10 +109,10 @@
 
         <div class="hero-cta-group">
           <a href="#appointment" class="btn btn-gold btn-lg">
-            📅 <span data-hi="अपॉइंटमेंट बुक करें (Book Appointment)" data-en="Book Appointment">अपॉइंटमेंट बुक करें (Book Appointment)</span>
+            📅 <span data-hi="अपॉइंटमेंट बुक करें" data-en="Book Appointment">अपॉइंटमेंट बुक करें</span>
           </a>
           <a href="tel:+919473298951" class="btn btn-outline-light btn-lg" id="hero-call-btn">
-            📞 <span data-hi="अभी कॉल करें (Call Now)" data-en="Call Now: 9473298951">अभी कॉल करें (Call Now)</span>
+            📞 <span data-hi="अभी कॉल करें" data-en="Call Now">अभी कॉल करें</span>
           </a>
         </div>
 
@@ -133,10 +128,13 @@
             <span>स्वस्थ जीवन...</span>
             <span>सुखी जीवन...</span>
           </div>
-          <img src="assets/hero-banner.svg" alt="सेहत होम्योपैथी दवाखाना - प्राकृतिक एवं होम्योपैथिक चिकित्सा" class="hero-illustration" />
+          <div class="poster-graphic-box">
+            <span class="poster-main-icon">🌿💊</span>
+            <h3>सेहत होम्योपैथी दवाखाना</h3>
+            <p>डॉ. इस्लाम (B.H.M.S.)</p>
+          </div>
           <div class="poster-footer-strip">
-            <div class="poster-clinic-title">सेहत होम्योपैथी दवाखाना</div>
-            <div class="poster-doc-line">डॉ. इस्लाम • B.H.M.S. (होम्योपैथी)</div>
+            <div class="poster-clinic-title">प्राकृतिक एवं होम्योपैथिक चिकित्सा</div>
             <div class="poster-slogan-badge">हल्की दवा... गहरा असर...</div>
           </div>
         </div>
@@ -144,7 +142,7 @@
     </div>
   </section>
 
-  <!-- Medical Responsibility Notice Banner -->
+  <!-- Medical Notice Banner -->
   <div class="medical-disclaimer-strip">
     <div class="container">
       <p data-hi="⚕️ महत्वपूर्ण चिकित्सकीय सूचना: किसी भी स्वास्थ्य समस्या के लिए उचित चिकित्सकीय जांच आवश्यक है। होम्योपैथिक परामर्श सहायक देखभाल प्रदान करता है और इसे आपातकालीन चिकित्सा या आवश्यक प्रमाण-आधारित उपचार के विकल्प के रूप में नहीं लिया जाना चाहिए।" data-en="⚕️ Medical Notice: Proper clinical evaluation is essential for every health condition. Homoeopathic consultation provides supportive care and should not replace emergency medical attention or necessary evidence-based treatment.">
@@ -153,9 +151,7 @@
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- 2. ABOUT DOCTOR SECTION                                               -->
-  <!-- ===================================================================== -->
+  <!-- About Doctor Section -->
   <section id="about" class="section about-section">
     <div class="container">
       <div class="section-header">
@@ -239,9 +235,7 @@
     </div>
   </section>
 
-  <!-- ===================================================================== -->
-  <!-- 3. TREATMENT CATEGORIES                                               -->
-  <!-- ===================================================================== -->
+  <!-- Treatment Categories Section (10 Categories) -->
   <section id="treatments" class="section treatments-section">
     <div class="container">
       <div class="section-header">
@@ -255,8 +249,9 @@
         <div class="title-underline"></div>
       </div>
 
-      <!-- Treatments Grid rendered dynamically by script.js -->
-      <div class="treatments-grid" id="treatments-grid"></div>
+      <div class="treatments-grid" id="treatments-grid">
+        <!-- Dynamically populated via script.js -->
+      </div>
 
       <div class="clinical-note-box">
         <h4 data-hi="महत्वपूर्ण चिकित्सकीय स्पष्टीकरण" data-en="Important Clinical Clarification">महत्वपूर्ण चिकित्सकीय स्पष्टीकरण</h4>
@@ -267,9 +262,7 @@
     </div>
   </section>
 
-  <!-- ===================================================================== -->
-  <!-- 4. APPOINTMENT BOOKING SYSTEM                                         -->
-  <!-- ===================================================================== -->
+  <!-- Advanced Appointment Booking Section -->
   <section id="appointment" class="section appointment-section">
     <div class="container">
       <div class="section-header">
@@ -301,7 +294,7 @@
 
             <p><strong data-hi="📞 हेल्पलाइन नंबर:" data-en="📞 Helpline Numbers:">📞 हेल्पलाइन नंबर:</strong><br/>
             <a href="tel:+919473298951">9473298951</a><br/>
-            <a href="tel:+916202405701">916202405701</a></p>
+            <a href="tel:+91916202405701">916202405701</a></p>
           </div>
 
           <div class="sidebar-slogan">
@@ -322,38 +315,236 @@
               <input type="tel" id="patient-phone" required placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" />
             </div>
             <div class="form-group">
+              <label for="patient-age" data-hi="आयु (वर्षों में)" data-en="Age (Years)">आयु (वर्षों में)</label>
+              <input type="number" id="patient-age" placeholder="जैसे: 35" min="1" max="120" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patient-gender" data-hi="लिंग" data-en="Gender">लिंग</label>
+              <select id="patient-gender">
+                <option value="Male" data-hi="पुरुष" data-en="Male">पुरुष</option>
+                <option value="Female" data-hi="महिला" data-en="Female">महिला</option>
+                <option value="Other" data-hi="अन्य" data-en="Other">अन्य</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="consult-time" data-hi="परामर्श का समय चुनें" data-en="Select Consultation Slot">परामर्श का समय चुनें</label>
               <select id="consult-time">
-                <option value="morning">सुबह (9 बजे से पहले)</option>
-                <option value="evening">शाम (4 बजे के बाद)</option>
+                <option value="Morning (Before 9 AM)" data-hi="सुबह (9 बजे से पहले)" data-en="Morning (Before 9 AM)">सुबह (9 बजे से पहले)</option>
+                <option value="Evening (After 4 PM)" data-hi="शाम (4 बजे के बाद)" data-en="Evening (After 4 PM)">शाम (4 बजे के बाद)</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="health-issue" data-hi="स्वास्थ्य समस्या का विवरण *" data-en="Health Issue Description *">स्वास्थ्य समस्या का विवरण *</label>
-            <textarea id="health-issue" rows="4" required placeholder="अपनी समस्या या लक्षण यहाँ लिखें..."></textarea>
+            <label for="appointment-date" data-hi="परामर्श की तिथि" data-en="Preferred Date">परामर्श की तिथि</label>
+            <input type="date" id="appointment-date" />
+          </div>
+
+          <div class="form-group">
+            <label for="health-issue" data-hi="स्वास्थ्य समस्या का विवरण एवं लक्षण *" data-en="Health Problem / Symptoms *">स्वास्थ्य समस्या का विवरण एवं लक्षण *</label>
+            <textarea id="health-issue" rows="4" required placeholder="अपनी समस्या या लक्षण यहाँ विस्तार से लिखें..."></textarea>
           </div>
 
           <div class="form-actions">
             <button type="submit" class="btn btn-gold btn-block">
-              🚀 <span data-hi="अपॉइंटमेंट अनुरोध भेजें" data-en="Submit Appointment Request">अपॉइंटमेंट अनुरोध भेजें</span>
+              🚀 <span data-hi="अपॉइंटमेंट अनुरोध भेजें (Submit)" data-en="Submit Appointment Request">अपॉइंटमेंट अनुरोध भेजें (Submit)</span>
+            </button>
+            <button type="button" id="whatsapp-direct-btn" class="btn btn-outline-success btn-block" style="margin-top: 10px;">
+              💬 <span data-hi="व्हाट्सएप पर सीधे भेजें" data-en="Send via WhatsApp Directly">व्हाट्सएप पर सीधे भेजें</span>
             </button>
           </div>
+          <div id="form-message" class="form-message" style="display:none; margin-top:15px; padding:10px; border-radius:8px; text-align:center; font-weight:600;"></div>
         </form>
       </div>
     </div>
   </section>
 
+  <!-- Gallery Section -->
+  <section id="gallery" class="section gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge" data-hi="क्लीनिक गैलरी" data-en="Clinic Gallery">क्लीनिक गैलरी</span>
+        <h2 class="section-title" data-hi="सेहत होम्योपैथी दवाखाना की झलकियाँ" data-en="Glimpses of Sehat Homoeopathy Dawakhana">
+          सेहत होम्योपैथी दवाखाना की झलकियाँ
+        </h2>
+        <div class="title-underline"></div>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item glass-card">
+          <div class="gallery-icon">🏥</div>
+          <h4 data-hi="क्लीनिक परिसर एवं परामर्श कक्ष" data-en="Clinic Premises & Consultation Room">क्लीनिक परिसर एवं परामर्श कक्ष</h4>
+          <p data-hi="अहवर, शेख आलम, गंज बाजार स्थित शांत एवं सुव्यवस्थित दवाखाना।" data-en="Quiet and well-organized clinic located at Ahwar, Sheikh Alam, Ganj Bazar.">अहवर, शेख आलम, गंज बाजार स्थित शांत एवं सुव्यवस्थित दवाखाना।</p>
+        </div>
+        <div class="gallery-item glass-card">
+          <div class="gallery-icon">🌿</div>
+          <h4 data-hi="प्रमाणिक होम्योपैथिक औषधियां" data-en="Authentic Homoeopathic Medicines">प्रमाणिक होम्योपैथिक औषधियां</h4>
+          <p data-hi="उच्च गुणवत्तायुक्त और सुरक्षित जर्मन व भारतीय होम्योपैथिक दवाइयां।" data-en="High quality and safe German and Indian homoeopathic remedies.">उच्च गुणवत्तायुक्त और सुरक्षित जर्मन व भारतीय होम्योपैथिक दवाइयां।</p>
+        </div>
+        <div class="gallery-item glass-card">
+          <div class="gallery-icon">👨‍⚕️</div>
+          <h4 data-hi="डॉ. इस्लाम द्वारा परामर्श" data-en="Consultation by Dr. Islam">डॉ. इस्लाम द्वारा परामर्श</h4>
+          <p data-hi="रोगी के व्यक्तिगत लक्षणों पर आधारित विस्तृत केस टेकिंग और मार्गदर्शन।" data-en="Detailed case taking and guidance based on patient's individual symptoms.">रोगी के व्यक्तिगत लक्षणों पर आधारित विस्तृत केस टेकिंग और मार्गदर्शन।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="section faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge" data-hi="अक्सर पूछे जाने वाले सवाल" data-en="Frequently Asked Questions">अक्सर पूछे जाने वाले सवाल</span>
+        <h2 class="section-title" data-hi="आपके सामान्य प्रश्नों के उत्तर" data-en="Answers to Your Common Questions">
+          आपके सामान्य प्रश्नों के उत्तर
+        </h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="faq-container" id="faq-container">
+        <!-- Dynamically populated via script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Patient Feedback Section -->
+  <section id="testimonials" class="section testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge" data-hi="रोगी प्रतिक्रिया" data-en="Patient Feedback">रोगी प्रतिक्रिया</span>
+        <h2 class="section-title" data-hi="अनुभव एवं प्रतिक्रिया" data-en="Experiences & Feedback">
+          अनुभव एवं प्रतिक्रिया
+        </h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card glass-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text" data-hi="“डॉ. इस्लाम साहब बहुत ध्यान से पुरानी से पुरानी समस्या सुनते हैं और उचित होम्योपैथिक मार्गदर्शन देते हैं। दवाइयों का असर बहुत अच्छा है।”" data-en="“Dr. Islam listens to chronic problems very patiently and provides proper homoeopathic guidance. The medicines are very effective.”">
+            “डॉ. इस्लाम साहब बहुत ध्यान से पुरानी से पुरानी समस्या सुनते हैं और उचित होम्योपैथिक मार्गदर्शन देते हैं। दवाइयों का असर बहुत अच्छा है।”
+          </p>
+          <div class="testimonial-author">— स्थानीय रोगी (गंग बाजार, आज़मगढ़)</div>
+        </div>
+        <div class="testimonial-card glass-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text" data-hi="“समय की पाबंदी और परामर्श का तरीका बहुत संतोषजनक है। बच्चों और बड़ों की समस्याओं के लिए उत्तम क्लिनिक।”" data-en="“Punctuality and consultation approach are very satisfying. Excellent clinic for children and adults.”">
+            “समय की पाबंदी और परामर्श का तरीका बहुत संतोषजनक है। बच्चों और बड़ों की समस्याओं के लिए उत्तम क्लिनिक।”
+          </p>
+          <div class="testimonial-author">— संतुष्ट आगंतुक</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge" data-hi="संपर्क करें" data-en="Contact Us">संपर्क करें</span>
+        <h2 class="section-title" data-hi="हमसे संपर्क करें एवं पहुँचें" data-en="Get in Touch & Visit Clinic">
+          हमसे संपर्क करें एवं पहुँचें
+        </h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card glass-card">
+          <h3>सेहत होम्योपैथी दवाखाना</h3>
+          <p class="sidebar-sub">SEHAT HOMOEOPATHY DAWAKHANA</p>
+          
+          <ul class="contact-details-list">
+            <li>
+              <span>👨‍⚕️</span>
+              <div>
+                <strong>डॉ. इस्लाम</strong>
+                <span>B.H.M.S. (होम्योपैथी)</span>
+              </div>
+            </li>
+            <li>
+              <span>📍</span>
+              <div>
+                <strong data-hi="पता:" data-en="Address:">पता:</strong>
+                <span>अहवर, शेख आलम, गंज बाजार</span>
+              </div>
+            </li>
+            <li>
+              <span>🕒</span>
+              <div>
+                <strong data-hi="परामर्श समय:" data-en="Timing:">परामर्श समय:</strong>
+                <span>सुबह 9 बजे से पहले एवं शाम 4 बजे के बाद।</span>
+              </div>
+            </li>
+            <li>
+              <span>📞</span>
+              <div>
+                <strong data-hi="फोन नंबर:" data-en="Phone Numbers:">फोन नंबर:</strong>
+                <a href="tel:+919473298951">9473298951</a> / <a href="tel:+91916202405701">916202405701</a>
+              </div>
+            </li>
+            <li>
+              <span>✉️</span>
+              <div>
+                <strong data-hi="ईमेल:" data-en="Email:">ईमेल:</strong>
+                <a href="mailto:mdrehanfazal716@gmail.com">mdrehanfazal716@gmail.com</a>
+              </div>
+            </li>
+          </ul>
+
+          <div class="contact-quick-btns">
+            <a href="tel:+919473298951" class="btn btn-gold">📞 <span data-hi="कॉल करें" data-en="Call Now">कॉल करें</span></a>
+            <a href="https://wa.me/919473298951?text=नमस्ते%20डॉक्टर%20साहब,%20मुझे%20परामर्श%20हेतु%20जानकारी%20चाहिए।" target="_blank" class="btn btn-success">💬 <span data-hi="व्हाट्सएप" data-en="WhatsApp">व्हाट्सएप</span></a>
+          </div>
+        </div>
+
+        <div class="map-card glass-card">
+          <h3 data-hi="क्लीनिक स्थान (गूगल मैप्स)" data-en="Clinic Location (Google Maps)">क्लीनिक स्थान (गूगल मैप्स)</h3>
+          <p class="map-desc" data-hi="अहवर, शेख आलम, गंज बाजार, उत्तर प्रदेश" data-en="Ahwar, Sheikh Alam, Ganj Bazar, Uttar Pradesh">अहवर, शेख आलम, गंज बाजार, उत्तर प्रदेश</p>
+          <div class="map-container-frame">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.0!2d83.18!3d26.07!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMDUnMDYuMCJOIDgzwrAxMCc0OC4wIkU!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin" 
+              width="100%" 
+              height="320" 
+              style="border:0; border-radius: 12px;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              title="Sehat Homoeopathy Dawakhana Location">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919473298951?text=नमस्ते%20डॉक्टर%20साहब,%20मुझे%20सेहत%20होम्योपैथी%20दवाखाना%20में%20परामर्श%20हेतु%20अपॉइंटमेंट%20चाहिए।" 
+     class="floating-whatsapp" 
+     target="_blank" 
+     aria-label="Chat on WhatsApp" 
+     title="WhatsApp Consultation">
+    💬
+  </a>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
-      <p>&copy; 2026 सेहत होम्योपैथी दवाखाना (SEHAT HOMOEOPATHY DAWAKHANA) • डॉ. इस्लाम (B.H.M.S.)</p>
-      <p>पता: अहवर, शेख आलम, गंज बाजार | संपर्क: 9473298951</p>
+      <div class="footer-brand">सेहत होम्योपैथी दवाखाना • SEHAT HOMOEOPATHY DAWAKHANA</div>
+      <p data-hi="डॉ. इस्लाम (B.H.M.S.) — अहवर, शेख आलम, गंज बाजार" data-en="Dr. Islam (B.H.M.S.) — Ahwar, Sheikh Alam, Ganj Bazar">डॉ. इस्लाम (B.H.M.S.) — अहवर, शेख आलम, गंज बाजार</p>
+      <p>&copy; 2026 सेहत होम्योपैथी दवाखाना. All Rights Reserved.</p>
+      <div class="footer-links">
+        <a href="#home" data-hi="होम" data-en="Home">होम</a> | 
+        <a href="#about" data-hi="डॉ. परिचय" data-en="About">डॉ. परिचय</a> | 
+        <a href="#treatments" data-hi="सेवाएं" data-en="Treatments">सेवाएं</a> | 
+        <a href="#appointment" data-hi="अपॉइंटमेंट" data-en="Appointment">अपॉइंटमेंट</a> | 
+        <a href="#contact" data-hi="संपर्क" data-en="Contact">संपर्क</a>
+      </div>
     </div>
   </footer>
 
-  <!-- Main JavaScript -->
+  <!-- Scripts -->
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
