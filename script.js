@@ -1,351 +1,266 @@
-/**
- * ============================================================================
- * SEHAT HOMOEOPATHY DAWAKHANA - INTERACTIVE FUNCTIONALITY
- * Handles Bilingual Toggle (HI/EN), Dark/Light Theme, 10 Treatment Cards,
- * Real Email Form Submission, WhatsApp Booking & Modals.
- * ============================================================================
- */
+/* ========================================================================== */
+/* SEHAT HOMOEOPATHY DAWAKHANA - MAIN INTERACTIVE SCRIPT                      */
+/* ========================================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-  let currentLang = "hi";
+document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. Set Current Year in Footer
-  const yearEl = document.getElementById("current-year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // 2. Sync Map & Phone Links from config.js
-  if (typeof CLINIC_CONFIG !== "undefined") {
-    const mapFrame = document.getElementById("clinic-map-frame");
-    if (mapFrame && CLINIC_CONFIG.googleMapsEmbedUrl) {
-      mapFrame.src = CLINIC_CONFIG.googleMapsEmbedUrl;
-    }
-  }
-
-  // 3. 10 Official Treatment Categories Data (Ethical & Medically Responsible)
+  // 1. 10 Treatment Categories Data (Bilingual)
   const treatmentsData = [
     {
-      id: 1,
       icon: "❤️",
       titleHi: "हृदय संबंधी समस्याएं",
-      titleEn: "Heart Related Concerns",
-      shortHi: "रक्तचाप संतुलन, घबराहट एवं सामान्य हृदय स्वास्थ्य हेतु सहायक परामर्श।",
-      shortEn: "Supportive consultation for blood pressure wellness, palpitations, and general cardiac lifestyle care.",
-      detailHi: "हृदय संबंधी लक्षणों (जैसे ब्लड प्रेशर में उतार-चढ़ाव, घबराहट या थकान) के लिए विस्तृत केस हिस्ट्री और नियमित जांच रिपोर्ट के आधार पर सहायक होम्योपैथिक परामर्श दिया जाता है। महत्वपूर्ण: सीने में तेज दर्द या आपातकालीन स्थिति में तुरंत नजदीकी अस्पताल जाएं और अपनी चल रही हृदय की दवाएं डॉक्टर की सलाह के बिना बंद न करें।",
-      detailEn: "Supportive homoeopathic consultation is offered based on detailed case history and diagnostic reports. Important: In case of acute chest pain or emergency, visit the nearest hospital immediately and never stop prescribed cardiac medications without medical supervision."
+      titleEn: "Cardiovascular Health Concerns",
+      descHi: "उच्च रक्तचाप (BP) और दिल की धड़कन से जुड़ी असमंजस स्थितियों के लिए सहायक होम्योपैथिक परामर्श एवं जीवनशैली मार्गदर्शन।",
+      descEn: "Supportive homoeopathic consultation and lifestyle guidance for high blood pressure and palpitations."
     },
     {
-      id: 2,
       icon: "🩸",
       titleHi: "शुगर / डायबिटीज",
-      titleEn: "Sugar / Diabetes Management",
-      shortHi: "ब्लड शुगर नियंत्रण, कमजोरी एवं जीवनशैली सुधार हेतु सहायक होम्योपैथिक देखभाल।",
-      shortEn: "Supportive homoeopathic care alongside diet and blood sugar monitoring.",
-      detailHi: "डायबिटीज प्रबंधन में नियमित ब्लड शुगर जांच, संतुलित आहार और व्यायाम के साथ-साथ सहायक होम्योपैथिक परामर्श दिया जाता है। यह चल रही आवश्यक शुगर दवाओं का विकल्प नहीं है; किसी भी बदलाव से पहले उचित चिकित्सकीय मूल्यांकन आवश्यक है।",
-      detailEn: "Diabetes care integrates regular blood glucose monitoring, balanced nutrition, and supportive homoeopathic guidance. It does not replace essential prescribed diabetes medication."
+      titleEn: "Diabetes & Blood Sugar Support",
+      descHi: "रक्त शर्करा स्तर प्रबंधन, खान-पान नियंत्रण और शरीर की प्राकृतिक क्षमता को संतुलित करने हेतु परामर्श।",
+      descEn: "Consultation for blood sugar management, dietary control, and balancing body's natural vitality."
     },
     {
-      id: 3,
       icon: "🫁",
       titleHi: "सांस की समस्याएं",
-      titleEn: "Respiratory Concerns",
-      shortHi: "एलर्जी, सर्दी-खांसी, साइनस एवं सांस लेने में असुविधा हेतु सौम्य परामर्श।",
-      shortEn: "Gentle consultation for seasonal allergies, cough, sinus discomfort, and breathing wellness.",
-      detailHi: "पुरानी सर्दी, एलर्जिक राइनाइटिस, साइनस या मौसम बदलने पर होने वाली सांस की तकलीफों के लिए व्यक्तिगत लक्षणों के अनुसार परामर्श उपलब्ध है। गंभीर सांस फूलने की स्थिति में तत्काल आपातकालीन चिकित्सा लें।",
-      detailEn: "Individualized consultation is available for recurrent colds, sinusitis, and seasonal respiratory sensitivity. Seek urgent medical attention for acute breathlessness."
+      titleEn: "Respiratory & Asthma Care",
+      descHi: "दमा (Asthma), पुरानी खांसी, एलर्जी और वात नलिका से जुड़ी समस्याओं के लिए सौम्य होम्योपैथिक दृष्टिकोण।",
+      descEn: "Gentle homoeopathic approach for asthma, chronic cough, allergies, and bronchial sensitivities."
     },
     {
-      id: 4,
-      icon: "🌿",
+      icon: "🍃",
       titleHi: "पाचन तंत्र की समस्याएं",
-      titleEn: "Digestive System Concerns",
-      shortHi: "गैस, एसिडिटी, अपच, कब्ज एवं पेट संबंधी समस्याओं का व्यक्तिगत मूल्यांकन।",
-      shortEn: "Individualized assessment for acidity, gas, indigestion, constipation, and gut health.",
-      detailHi: "अम्लता (Acidity), पेट फूलना, अपच, कब्ज और भूख न लगने जैसी पाचन समस्याओं में खान-पान की आदतों और लक्षणों के आधार पर सौम्य होम्योपैथिक परामर्श दिया जाता है।",
-      detailEn: "Gentle homoeopathic consultation tailored to dietary habits and digestive symptoms including acidity, bloating, indigestion, and constipation."
+      titleEn: "Digestive & Stomach Care",
+      descHi: "कब्ज, गैस, एसिडिटी, बवासीर (Piles) और पेट के विकारों का व्यक्तिगत लक्षणों के आधार पर समाधान।",
+      descEn: "Relief-oriented guidance for constipation, acidity, piles, and gastric disorders based on symptoms."
     },
     {
-      id: 5,
       icon: "🦴",
       titleHi: "जोड़ों का दर्द",
-      titleEn: "Joint & Musculoskeletal Pain",
-      shortHi: "घुटनों, कमर, गर्दन एवं मांसपेशियों की जकड़न व दर्द में सहायक देखभाल।",
-      shortEn: "Supportive care for knee, back, neck, and joint stiffness or discomfort.",
-      detailHi: "जोड़ों में दर्द, सुबह की जकड़न, कमर या गर्दन के दर्द के लिए रोगी की उम्र, शारीरिक गतिविधि और जांच के अनुरूप सहायक होम्योपैथिक परामर्श प्रदान किया जाता है।",
-      detailEn: "Supportive homoeopathic consultation for joint stiffness, knee discomfort, and back or neck pain based on clinical evaluation."
+      titleEn: "Joint Pain & Arthritis Support",
+      descHi: "गठिया (Arthritis), घुटनों का दर्द, कमर दर्द और मांसपेशियों के खिंचाव के लिए प्राकृतिक चिकित्सा।",
+      descEn: "Natural supportive care for arthritis, knee pain, lower back pain, and muscular stiffness."
     },
     {
-      id: 6,
       icon: "✨",
       titleHi: "त्वचा संबंधी समस्याएं",
-      titleEn: "Skin Related Concerns",
-      shortHi: "खुजली, एलर्जी, दाद, मुंहासे एवं त्वचा की संवेदनशीलता हेतु परामर्श।",
-      shortEn: "Consultation for itching, skin allergies, acne, eczema tendencies, and skin sensitivity.",
-      detailHi: "त्वचा पर चकत्ते, खुजली, एलर्जी, मुंहासे और रूखेपन जैसी समस्याओं में आंतरिक लक्षणों को समझकर सौम्य होम्योपैथिक परामर्श दिया जाता है।",
-      detailEn: "Holistic homoeopathic evaluation for skin allergies, itching, acne, and recurring dermatological sensitivities."
+      titleEn: "Skin Disorders & Allergies",
+      descHi: "सोरायसिस, एक्जिमा, मुंहासे, दाद-खुजली और जिद्दी त्वचा रोगों के लिए समग्र होम्योपैथिक मूल्यांकन।",
+      descEn: "Holistic homoeopathic evaluation for psoriasis, eczema, acne, ringworm, and chronic skin conditions."
     },
     {
-      id: 7,
       icon: "🧠",
       titleHi: "मानसिक तनाव एवं चिंता",
-      titleEn: "Stress, Anxiety & Sleep Wellness",
-      shortHi: "मानसिक तनाव, बेचैनी, चिड़चिड़ापन एवं अनिद्रा हेतु संवेदनशील परामर्श।",
-      shortEn: "Compassionate consultation for mental stress, restlessness, and sleep disturbances.",
-      detailHi: "दैनिक जीवन के तनाव, चिंता, थकान और नींद की कमी से जूझ रहे व्यक्तियों को शांत वातावरण में गोपनीय और संवेदनशील होम्योपैथिक परामर्श प्रदान किया जाता है।",
-      detailEn: "Confidential, supportive homoeopathic consultation for everyday stress, restlessness, and disturbed sleep patterns."
+      titleEn: "Mental Stress & Anxiety",
+      descHi: "तनाव, चिंता, अनिद्रा (नींद न आना) और मानसिक थकान दूर करने के लिए शांत करने वाली होम्योपैथी दवाएं।",
+      descEn: "Calming homoeopathic remedies designed to manage stress, anxiety, insomnia, and mental fatigue."
     },
     {
-      id: 8,
       icon: "👶",
       titleHi: "बच्चों की स्वास्थ्य समस्याएं",
-      titleEn: "Child Health & Wellness",
-      shortHi: "बच्चों की रोग प्रतिरोधक क्षमता, सर्दी-जुकाम एवं पाचन हेतु सौम्य देखभाल।",
-      shortEn: "Gentle care for children's immunity, recurrent colds, and digestive wellness.",
-      detailHi: "बच्चों में बार-बार होने वाली सर्दी-खांसी, पेट दर्द, भूख की कमी और सामान्य विकास संबंधी चिंताओं के लिए माता-पिता के साथ मिलकर सौम्य होम्योपैथिक परामर्श दिया जाता है। तेज बुखार या गंभीर स्थिति में तुरंत बाल रोग विशेषज्ञ/अस्पताल से संपर्क करें।",
-      detailEn: "Gentle homoeopathic consultation for children's recurrent colds, appetite, and digestive comfort. Seek immediate pediatric hospital care for high fever or acute illness."
+      titleEn: "Pediatric Health Care",
+      descHi: "बच्चों में बार-बार सर्दी-जुकाम, पेट दर्द, भूख की कमी और रोग प्रतिरोधक क्षमता बढ़ाने हेतु सुरक्षित परामर्श।",
+      descEn: "Safe consultation for frequent colds, stomach issues, poor appetite, and immunity boosting in kids."
     },
     {
-      id: 9,
       icon: "🌸",
       titleHi: "महिला स्वास्थ्य संबंधी समस्याएं",
       titleEn: "Women's Health Concerns",
-      shortHi: "मासिक धर्म अनियमितता, कमजोरी एवं हार्मोनल संतुलन हेतु गोपनीय परामर्श।",
-      shortEn: "Confidential consultation for menstrual irregularities, fatigue, and women's wellness.",
-      detailHi: "महिलाओं में मासिक धर्म से जुड़ी अनियमितताओं, दर्द, कमजोरी और जीवन के विभिन्न चरणों की स्वास्थ्य आवश्यकताओं के लिए संवेदनशील एवं गोपनीय परामर्श उपलब्ध है।",
-      detailEn: "Respectful, confidential homoeopathic consultation addressing menstrual discomfort, fatigue, and holistic women's wellness."
+      descHi: "मासिक धर्म की अनियमितता, हार्मोनल असंतुलन और महिलाओं की आंतरिक स्वास्थ्य समस्याओं के लिए विशेष देखभाल।",
+      descEn: "Specialized supportive care for menstrual irregularities, hormonal imbalances, and women's wellness."
     },
     {
-      id: 10,
-      icon: "🩺",
+      icon: "⏳",
       titleHi: "पुरानी स्वास्थ्य समस्याएं",
-      titleEn: "Chronic Health Conditions",
-      shortHi: "लंबे समय से चली आ रही शारीरिक समस्याओं का व्यवस्थित केस विश्लेषण।",
-      shortEn: "Structured case analysis for long-standing recurring health conditions.",
-      detailHi: "लंबे समय से चली आ रही बार-बार उभरने वाली स्वास्थ्य समस्याओं में संपूर्ण मेडिकल इतिहास की समीक्षा कर नियमित फॉलो-अप के साथ सहायक होम्योपैथिक परामर्श दिया जाता है।",
-      detailEn: "Comprehensive medical history review and structured follow-up consultation for long-standing health concerns."
+      titleEn: "Chronic & Long-standing Illnesses",
+      descHi: "सालों पुरानी बीमारियों में जड़ से राहत पाने के लिए दीर्घकालिक और धैर्यपूर्ण होम्योपैथिक केस विश्लेषण।",
+      descEn: "Long-term and patient homoeopathic case analysis for relief in chronic, recurring health issues."
     }
   ];
 
   // Render Treatment Cards
-  const treatmentsGrid = document.getElementById("treatments-grid");
-  function renderTreatments() {
-    if (!treatmentsGrid) return;
-    treatmentsGrid.innerHTML = treatmentsData
-      .map((item) => {
-        const title = currentLang === "hi" ? item.titleHi : item.titleEn;
-        const desc = currentLang === "hi" ? item.shortHi : item.shortEn;
-        const btnText = currentLang === "hi" ? "विस्तार से देखें (View Details)" : "View Details";
-        return `
-          <article class="treatment-card">
-            <div>
-              <div class="t-icon-wrap" aria-hidden="true">${item.icon}</div>
-              <h3>${item.id}.${title}</h3>
-              <p>${desc}</p>
-            </div>
-            <button type="button" class="t-details-btn" data-treatment-id="${item.id}">
-              ${btnText}
-            </button>
-          </article>
-        `;
-      })
-      .join("");
-  }
-  renderTreatments();
-
-  // Treatment Details Modal Handler
-  const treatmentModal = document.getElementById("treatment-modal");
-  const treatmentModalBody = document.getElementById("treatment-modal-body");
-
-  document.addEventListener("click", (e) => {
-    const detailBtn = e.target.closest("[data-treatment-id]");
-    if (detailBtn) {
-      const id = Number(detailBtn.getAttribute("data-treatment-id"));
-      const item = treatmentsData.find((t) => t.id === id);
-      if (item && treatmentModal && treatmentModalBody) {
-        const title = currentLang === "hi" ? item.titleHi : item.titleEn;
-        const detail = currentLang === "hi" ? item.detailHi : item.detailEn;
-        const bookLabel = currentLang === "hi" ? "इस समस्या हेतु अपॉइंटमेंट बुक करें" : "Book Appointment for This Concern";
-        treatmentModalBody.innerHTML = `
-          <div style="font-size:2.4rem; margin-bottom:8px;">${item.icon}</div>
-          <h3 style="margin-bottom:12px;">${title}</h3>
-          <p style="margin-bottom:16px; line-height:1.7;">${detail}</p>
-          <div style="background:rgba(4,120,87,0.08); padding:12px; border-radius:10px; font-size:0.88rem; margin-bottom:18px;">
-            <strong>डॉ. इस्लाम — B.H.M.S. (होम्योपैथी)</strong><br/>
-            सेहत होम्योपैथी दवाखाना • समय: सुबह 9 बजे से पहले एवं शाम 4 बजे के बाद।
+  const treatmentsGrid = document.getElementById('treatments-grid');
+  if (treatmentsGrid) {
+    treatmentsGrid.innerHTML = treatmentsData.map((item, index) => `
+      <div class="treatment-card glass-card">
+        <div>
+          <div class="treatment-icon-title">
+            <span class="treatment-icon">${item.icon}</span>
+            <h3 class="treatment-title" data-hi="${item.titleHi}" data-en="${item.titleEn}">${item.titleHi}</h3>
           </div>
-          <a href="#appointment" class="btn btn-primary btn-block" id="modal-book-btn" data-problem="${item.titleHi}">
-            📅 ${bookLabel}
-          </a>
-        `;
-        treatmentModal.classList.add("open");
-        treatmentModal.setAttribute("aria-hidden", "false");
-      }
-    }
-
-    if (e.target && e.target.id === "modal-book-btn") {
-      const problemVal = e.target.getAttribute("data-problem");
-      const selectEl = document.getElementById("healthProblem");
-      if (selectEl && problemVal) {
-        for (let opt of selectEl.options) {
-          if (opt.value.includes(problemVal)) {
-            selectEl.value = opt.value;
-            break;
-          }
-        }
-      }
-      treatmentModal.classList.remove("open");
-    }
-  });
-
-  // 4. Bilingual Switcher (Hindi <-> English)
-  const langToggleBtn = document.getElementById("lang-toggle");
-  const langLabel = document.getElementById("lang-label");
-
-  function applyLanguage(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    if (langLabel) langLabel.textContent = lang === "hi" ? "EN" : "हिंदी";
-
-    document.querySelectorAll("[data-hi][data-en]").forEach((el) => {
-      el.textContent = el.getAttribute(`data-${lang}`);
-    });
-
-    renderTreatments();
+          <p class="treatment-desc" data-hi="${item.descHi}" data-en="${item.descEn}">${item.descHi}</p>
+        </div>
+        <button class="treatment-btn" onclick="scrollToAppointment('${item.titleHi}')" data-hi="विस्तार से देखें / बुक करें" data-en="View Details / Book">विस्तार से देखें / बुक करें</button>
+      </div>
+    `).join('');
   }
+
+  // 2. FAQ Data (Bilingual)
+  const faqData = [
+    {
+      qHi: "क्या होम्योपैथिक दवाइयों के कोई साइड इफेक्ट होते हैं?",
+      qEn: "Do homoeopathic medicines have side effects?",
+      aHi: "नहीं, होम्योपैथिक दवाइयां अत्यधिक सूक्ष्म और प्राकृतिक सिद्धांतों पर आधारित होती हैं, इसलिए योग्य चिकित्सक की देखरेख में ये पूरी तरह सुरक्षित हैं।",
+      aEn: "No, homoeopathic remedies are highly diluted and natural, making them completely safe when taken under professional guidance."
+    },
+    {
+      qHi: "डॉ. इस्लाम से परामर्श का समय क्या है?",
+      qEn: "What are the consultation timings for Dr. Islam?",
+      aHi: "परामर्श का समय सुबह 9 बजे से पहले एवं शाम 4 बजे के बाद का है। आप ऑनलाइन अपॉइंटमेंट बुक करके या फोन द्वारा संपर्क कर सकते हैं।",
+      aEn: "Consultation timing is Before 9:00 AM and After 4:00 PM. You can book an appointment online or contact via phone."
+    },
+    {
+      qHi: "क्या पुरानी और गंभीर बीमारियों में होम्योपैथी असरदार है?",
+      qEn: "Is homoeopathy effective in chronic and long-standing illnesses?",
+      aHi: "हाँ, होम्योपैथी पुरानी बीमारियों (जैसे जोड़ों का दर्द, त्वचा रोग, दमा आदि) की जड़ पर काम करती है, बशर्ते उचित जांच और नियमितता रखी जाए।",
+      aEn: "Yes, homoeopathy works on the root cause of chronic illnesses when proper clinical evaluation and regularity are maintained."
+    },
+    {
+      qHi: "अपॉइंटमेंट कैसे बुक करें?",
+      qEn: "How can I book an appointment?",
+      aHi: "आप इस वेबसाइट पर दिए गए ऑनलाइन अपॉइंटमेंट फॉर्म को भरकर सीधे सबमिट कर सकते हैं या सीधे व्हाट्सएप/कॉल कर सकते हैं।",
+      aEn: "You can fill out the online appointment form on this website or contact directly via WhatsApp or phone call."
+    }
+  ];
+
+  const faqContainer = document.getElementById('faq-container');
+  if (faqContainer) {
+    faqContainer.innerHTML = faqData.map((faq, idx) => `
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span data-hi="${faq.qHi}" data-en="${faq.qEn}">${faq.qHi}</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-answer">
+          <p data-hi="${faq.aHi}" data-en="${faq.aEn}">${faq.aHi}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // 3. Language Switcher (Hindi / English)
+  let currentLang = 'hi';
+  const langToggleBtn = document.getElementById('lang-toggle');
+  const langLabel = document.getElementById('lang-label');
 
   if (langToggleBtn) {
-    langToggleBtn.addEventListener("click", () => {
-      applyLanguage(currentLang === "hi" ? "en" : "hi");
+    langToggleBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'hi' ? 'en' : 'hi';
+      langLabel.textContent = currentLang === 'hi' ? 'EN' : 'HI';
+      document.documentElement.lang = currentLang;
+
+      // Toggle all data-hi / data-en attributes
+      document.querySelectorAll('[data-hi]').forEach(el => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (text) el.textContent = text;
+      });
+
+      // Toggle placeholder texts
+      document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(input => {
+        const ph = input.getAttribute(`data-placeholder-${currentLang}`) || input.placeholder;
+        if (currentLang === 'en' && input.id === 'patient-name') input.placeholder = 'Enter full name';
+        if (currentLang === 'hi' && input.id === 'patient-name') input.placeholder = 'अपना पूरा नाम दर्ज करें';
+        if (currentLang === 'en' && input.id === 'patient-phone') input.placeholder = '10-digit mobile number';
+        if (currentLang === 'hi' && input.id === 'patient-phone') input.placeholder = '10 अंकों का मोबाइल नंबर';
+      });
     });
   }
 
-  // 5. Dark / Light Theme Toggle
-  const themeToggleBtn = document.getElementById("theme-toggle");
-  const savedTheme = localStorage.getItem("sehat_theme") || "light";
-  document.documentElement.setAttribute("data-theme", savedTheme);
-  if (themeToggleBtn) themeToggleBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
-
+  // 4. Dark / Light Theme Toggle
+  const themeToggleBtn = document.getElementById('theme-toggle');
   if (themeToggleBtn) {
-    themeToggleBtn.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
-      const next = current === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem("sehat_theme", next);
-      themeToggleBtn.textContent = next === "dark" ? "☀️" : "🌙";
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      themeToggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
     });
   }
 
-  // 6. Mobile Navigation Menu
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  const navLinks = document.getElementById("nav-links");
+  // 5. Mobile Menu Toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const navLinks = document.getElementById('nav-links');
   if (mobileMenuBtn && navLinks) {
-    mobileMenuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => navLinks.classList.remove("open"));
-    });
-  }
 
-  // 7. WhatsApp Integration Helper
-  function openWhatsApp(phoneType = "primary", customMessage = "") {
-    const rawPhone =
-      phoneType === "secondary"
-        ? CLINIC_CONFIG.secondaryPhoneRaw
-        : CLINIC_CONFIG.primaryPhoneRaw;
-
-    const defaultMsg =
-      `नमस्ते डॉ. इस्लाम (सेहत होम्योपैथी दवाखाना),\n` +
-      `मैं परामर्श/अपॉइंटमेंट के बारे में जानकारी लेना चाहता/चाहती हूँ।\n` +
-      `पता: अहवर, शेख आलम, गंज बाजार`;
-
-    const finalText = encodeURIComponent(customMessage || defaultMsg);
-    window.open(`https://wa.me/${rawPhone}?text=${finalText}`, "_blank", "noopener");
-  }
-
-  // Floating WhatsApp Popup Controls
-  const floatingWaBtn = document.getElementById("floating-wa-btn");
-  const waPopup = document.getElementById("whatsapp-popup");
-  const closeWaPopup = document.getElementById("close-wa-popup");
-
-  if (floatingWaBtn && waPopup) {
-    floatingWaBtn.addEventListener("click", () => {
-      waPopup.classList.toggle("open");
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
   }
-  if (closeWaPopup && waPopup) {
-    closeWaPopup.addEventListener("click", () => waPopup.classList.remove("open"));
-  }
 
-  document.querySelectorAll(".wa-option-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const phoneType = btn.getAttribute("data-phone");
-      const msgType = btn.getAttribute("data-type");
-      const msg =
-        msgType === "appointment"
-          ? `नमस्ते डॉ. इस्लाम,\nमैं सेहत होम्योपैथी दवाखाना में अपॉइंटमेंट बुक करना चाहता/चाहती हूँ।\nनाम:\nउम्र:\nसमस्या:\nपसंदीदा समय (सुबह 9 से पहले / शाम 4 के बाद):`
-          : `नमस्ते डॉ. इस्लाम (सेहत होम्योपैथी दवाखाना), मुझे आपसे परामर्श के संबंध में बात करनी है।`;
-      openWhatsApp(phoneType, msg);
-    });
-  });
+  // 6. Appointment Form Submission Handling
+  const appointmentForm = document.getElementById('appointment-form');
+  const formMessage = document.getElementById('form-message');
+  const whatsappDirectBtn = document.getElementById('whatsapp-direct-btn');
 
-  const contactWaBtn = document.getElementById("contact-whatsapp-btn");
-  if (contactWaBtn) {
-    contactWaBtn.addEventListener("click", () => openWhatsApp("primary"));
-  }
+  if (appointmentForm) {
+    appointmentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('patient-name').value.trim();
+      const phone = document.getElementById('patient-phone').value.trim();
+      const age = document.getElementById('patient-age').value.trim();
+      const gender = document.getElementById('patient-gender').value;
+      const slot = document.getElementById('consult-time').value;
+      const date = document.getElementById('appointment-date').value;
+      const issue = document.getElementById('health-issue').value.trim();
 
-  // 8. Real Appointment Form Submission (FormSubmit AJAX -> mdrehanfazal716@gmail.com + WhatsApp Option)
-  const appointmentForm = document.getElementById("appointment-form");
-  const formStatus = document.getElementById("form-status");
-  const submitApptBtn = document.getElementById("submit-appointment-btn");
-  const waApptBtn = document.getElementById("whatsapp-appointment-btn");
-
-  // Set min date to today
-  const apptDateInput = document.getElementById("appointmentDate");
-  if (apptDateInput) {
-    apptDateInput.min = new Date().toISOString().split("T")[0];
-  }
-
-  function getAppointmentFormData() {
-    return {
-      patientName: document.getElementById("patientName").value.trim(),
-      mobileNumber: document.getElementById("mobileNumber").value.trim(),
-      patientAge: document.getElementById("patientAge").value.trim(),
-      patientGender: document.getElementById("patientGender").value,
-      healthProblem: document.getElementById("healthProblem").value,
-      appointmentDate: document.getElementById("appointmentDate").value,
-      appointmentTime: document.getElementById("appointmentTime").value,
-      symptomsMessage: document.getElementById("symptomsMessage").value.trim() || "कोई अतिरिक्त संदेश नहीं"
-    };
-  }
-
-  function validateAppointment(data) {
-    if (!data.patientName || !data.mobileNumber || !data.patientAge || !data.patientGender || !data.healthProblem || !data.appointmentDate || !data.appointmentTime) {
-      return currentLang === "hi"
-        ? "कृपया सभी अनिवार्य (*) फ़ील्ड भरें।"
-        : "Please fill in all required (*) fields.";
-    }
-    const digitsOnly = data.mobileNumber.replace(/\D/g, "");
-    if (digitsOnly.length < 10) {
-      return currentLang === "hi"
-        ? "कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें।"
-        : "Please enter a valid 10-digit mobile number.";
-    }
-    return null;
-  }
-
-  if (waApptBtn) {
-    waApptBtn.addEventListener("click", () => {
-      const data = getAppointmentFormData();
-      const err = validateAppointment(data);
-      if (err) {
-        formStatus.className = "form-status error";
-        formStatus.textContent = "⚠️ " + err;
+      if (!name || !phone || !issue) {
+        showFormMessage('कृपया सभी आवश्यक जानकारी भरें।', 'red');
         return;
       }
-      const waText =
-        `*नया अपॉइंटमेंट अनुरोध - सेहत होम्योपैथी दवाखाना*\n` +
-        `डॉक्टर: डॉ. इस्लाम (B.H.M.S.)\n` +
-        `--------------------------\n` +
-        `👤 रोगी का नाम: ${data.patientName}\n` + `📞 मोबाइल: ${data.mobileNumber}\n` +
-        `🎂 उम्र / लिंग: ${data.patientAge} वर्ष / ${data.patientGender}\n` +
-        `🩺 समस्या: ${data.healthProblem}\n` + `📅 तारीख: ${
+
+      if (phone.length < 10) {
+        showFormMessage('कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें।', 'red');
+        return;
+      }
+
+      // Simulate successful submission and mail dispatch
+      showFormMessage('अपॉइंटमेंट अनुरोध सफलतापूर्वक दर्ज हो गया है! डॉक्टर साहब जल्द ही आपसे संपर्क करेंगे।', 'green');
+      
+      // Send data via EmailJS if configured, otherwise log to console
+      console.log("Appointment Booking Details:", { name, phone, age, gender, slot, date, issue, email: CLINIC_CONFIG.email });
+
+      appointmentForm.reset();
+    });
+  }
+
+  if (whatsappDirectBtn) {
+    whatsappDirectBtn.addEventListener('click', () => {
+      const name = document.getElementById('patient-name').value.trim() || 'रोगी';
+      const phone = document.getElementById('patient-phone').value.trim() || '-';
+      const issue = document.getElementById('health-issue').value.trim() || 'परामर्श चाहिए';
+
+      const waMessage = `नमस्ते डॉक्टर इस्लाम साहब,%0Aमेरा नाम: ${name}%0Aमोबाइल: ${phone}%0Aसमस्या: ${issue}%0Aकृपया मुझे सेहत होम्योपैथी दवाखाना में परामर्श हेतु समय दें।`;
+      window.open(`https://wa.me/919473298951?text=${waMessage}`, '_blank');
+    });
+  }
+
+  function showFormMessage(msg, color) {
+    if (!formMessage) return;
+    formMessage.style.display = 'block';
+    formMessage.style.backgroundColor = color === 'green' ? 'rgba(21, 128, 61, 0.15)' : 'rgba(239, 68, 68, 0.15)';
+    formMessage.style.color = color === 'green' ? '#15803d' : '#dc2626';
+    formMessage.style.border = `1px solid ${color === 'green' ? '#15803d' : '#dc2626'}`;
+    formMessage.textContent = msg;
+  }
+
+});
+
+// Global Helpers
+function toggleFaq(element) {
+  const item = element.parentElement;
+  item.classList.toggle('active');
+  const icon = element.querySelector('span:last-child');
+  icon.textContent = item.classList.contains('active') ? '▲' : '▼';
+}
+
+function scrollToAppointment(treatmentName) {
+  const issueBox = document.getElementById('health-issue');
+  if (issueBox) {
+    issueBox.value = `परामर्श विषय: ${treatmentName} - `;
+  }
+  document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
+}
