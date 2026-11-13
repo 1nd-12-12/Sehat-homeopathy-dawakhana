@@ -235,7 +235,7 @@
     </div>
   </section>
 
-  <!-- Treatment Categories Section (10 Categories) -->
+  <!-- Treatment Categories Section -->
   <section id="treatments" class="section treatments-section">
     <div class="container">
       <div class="section-header">
@@ -262,7 +262,7 @@
     </div>
   </section>
 
-  <!-- Advanced Appointment Booking Section -->
+  <!-- Advanced Appointment Booking Section (With Formspree Action) -->
   <section id="appointment" class="section appointment-section">
     <div class="container">
       <div class="section-header">
@@ -303,27 +303,27 @@
           </div>
         </div>
 
-        <form id="appointment-form" class="appointment-form">
+        <form id="appointment-form" class="appointment-form" action="https://formspree.io/f/meagqvyj" method="POST">
           <div class="form-group">
             <label for="patient-name" data-hi="रोगी का पूरा नाम *" data-en="Patient Full Name *">रोगी का पूरा नाम *</label>
-            <input type="text" id="patient-name" required placeholder="अपना पूरा नाम दर्ज करें" />
+            <input type="text" id="patient-name" name="Patient_Name" required placeholder="अपना पूरा नाम दर्ज करें" />
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="patient-phone" data-hi="मोबाइल नंबर *" data-en="Mobile Number *">मोबाइल नंबर *</label>
-              <input type="tel" id="patient-phone" required placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" />
+              <input type="tel" id="patient-phone" name="Mobile_Number" required placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" />
             </div>
             <div class="form-group">
               <label for="patient-age" data-hi="आयु (वर्षों में)" data-en="Age (Years)">आयु (वर्षों में)</label>
-              <input type="number" id="patient-age" placeholder="जैसे: 35" min="1" max="120" />
+              <input type="number" id="patient-age" name="Age" placeholder="जैसे: 35" min="1" max="120" />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="patient-gender" data-hi="लिंग" data-en="Gender">लिंग</label>
-              <select id="patient-gender">
+              <select id="patient-gender" name="Gender">
                 <option value="Male" data-hi="पुरुष" data-en="Male">पुरुष</option>
                 <option value="Female" data-hi="महिला" data-en="Female">महिला</option>
                 <option value="Other" data-hi="अन्य" data-en="Other">अन्य</option>
@@ -331,7 +331,7 @@
             </div>
             <div class="form-group">
               <label for="consult-time" data-hi="परामर्श का समय चुनें" data-en="Select Consultation Slot">परामर्श का समय चुनें</label>
-              <select id="consult-time">
+              <select id="consult-time" name="Consultation_Slot">
                 <option value="Morning (Before 9 AM)" data-hi="सुबह (9 बजे से पहले)" data-en="Morning (Before 9 AM)">सुबह (9 बजे से पहले)</option>
                 <option value="Evening (After 4 PM)" data-hi="शाम (4 बजे के बाद)" data-en="Evening (After 4 PM)">शाम (4 बजे के बाद)</option>
               </select>
@@ -340,12 +340,12 @@
 
           <div class="form-group">
             <label for="appointment-date" data-hi="परामर्श की तिथि" data-en="Preferred Date">परामर्श की तिथि</label>
-            <input type="date" id="appointment-date" />
+            <input type="date" id="appointment-date" name="Appointment_Date" />
           </div>
 
           <div class="form-group">
             <label for="health-issue" data-hi="स्वास्थ्य समस्या का विवरण एवं लक्षण *" data-en="Health Problem / Symptoms *">स्वास्थ्य समस्या का विवरण एवं लक्षण *</label>
-            <textarea id="health-issue" rows="4" required placeholder="अपनी समस्या या लक्षण यहाँ विस्तार से लिखें..."></textarea>
+            <textarea id="health-issue" name="Health_Issue" rows="4" required placeholder="अपनी समस्या या लक्षण यहाँ विस्तार से लिखें..."></textarea>
           </div>
 
           <div class="form-actions">
@@ -426,7 +426,7 @@
           <p class="testimonial-text" data-hi="“डॉ. इस्लाम साहब बहुत ध्यान से पुरानी से पुरानी समस्या सुनते हैं और उचित होम्योपैथिक मार्गदर्शन देते हैं। दवाइयों का असर बहुत अच्छा है।”" data-en="“Dr. Islam listens to chronic problems very patiently and provides proper homoeopathic guidance. The medicines are very effective.”">
             “डॉ. इस्लाम साहब बहुत ध्यान से पुरानी से पुरानी समस्या सुनते हैं और उचित होम्योपैथिक मार्गदर्शन देते हैं। दवाइयों का असर बहुत अच्छा है।”
           </p>
-          <div class="testimonial-author">— स्थानीय रोगी (गंग बाजार, आज़मगढ़)</div>
+          <div class="testimonial-author">— स्थानीय रोगी (गंज बाजार, आज़मगढ़)</div>
         </div>
         <div class="testimonial-card glass-card">
           <div class="stars">⭐⭐⭐⭐⭐</div>
@@ -495,7 +495,7 @@
 
           <div class="contact-quick-btns">
             <a href="tel:+919473298951" class="btn btn-gold">📞 <span data-hi="कॉल करें" data-en="Call Now">कॉल करें</span></a>
-            <a href="https://wa.me/919473298951?text=नमस्ते%20डॉक्टर%20साहब,%20मुझे%20परामर्श%20हेतु%20जानकारी%20चाहिए।" target="_blank" class="btn btn-success">💬 <span data-hi="व्हाट्सएप" data-en="WhatsApp">व्हाट्सएप</span></a>
+            <a href="https://api.whatsapp.com/send?phone=919473298951&text=नमस्ते%20डॉक्टर%20साहब,%20मुझे%20परामर्श%20हेतु%20जानकारी%20चाहिए।" target="_blank" class="btn btn-success">💬 <span data-hi="व्हाट्सएप" data-en="WhatsApp">व्हाट्सएप</span></a>
           </div>
         </div>
 
@@ -519,7 +519,7 @@
   </section>
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/919473298951?text=नमस्ते%20डॉक्टर%20साहब,%20मुझे%20सेहत%20होम्योपैथी%20दवाखाना%20में%20परामर्श%20हेतु%20अपॉइंटमेंट%20चाहिए।" 
+  <a href="https://api.whatsapp.com/send?phone=919473298951&text=नमस्ते%20डॉक्टर%20साहब,%20मुझे%20सेहत%20होम्योपैथी%20दवाखाना%20में%20परामर्श%20हेतु%20अपॉइंटमेंट%20चाहिए।" 
      class="floating-whatsapp" 
      target="_blank" 
      aria-label="Chat on WhatsApp" 
