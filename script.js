@@ -149,19 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
       langLabel.textContent = currentLang === 'hi' ? 'EN' : 'HI';
       document.documentElement.lang = currentLang;
 
-      // Toggle all data-hi / data-en attributes
       document.querySelectorAll('[data-hi]').forEach(el => {
         const text = el.getAttribute(`data-${currentLang}`);
         if (text) el.textContent = text;
-      });
-
-      // Toggle placeholder texts
-      document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(input => {
-        const ph = input.getAttribute(`data-placeholder-${currentLang}`) || input.placeholder;
-        if (currentLang === 'en' && input.id === 'patient-name') input.placeholder = 'Enter full name';
-        if (currentLang === 'hi' && input.id === 'patient-name') input.placeholder = 'अपना पूरा नाम दर्ज करें';
-        if (currentLang === 'en' && input.id === 'patient-phone') input.placeholder = '10-digit mobile number';
-        if (currentLang === 'hi' && input.id === 'patient-phone') input.placeholder = '10 अंकों का मोबाइल नंबर';
       });
     });
   }
@@ -190,21 +180,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Appointment Form Submission Handling
+  // 6. Appointment Form Submission Handling (Formspree AJAX + WhatsApp)
   const appointmentForm = document.getElementById('appointment-form');
   const formMessage = document.getElementById('form-message');
   const whatsappDirectBtn = document.getElementById('whatsapp-direct-btn');
 
   if (appointmentForm) {
-    appointmentForm.addEventListener('submit', (e) => {
+    appointmentForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       const name = document.getElementById('patient-name').value.trim();
       const phone = document.getElementById('patient-phone').value.trim();
-      const age = document.getElementById('patient-age').value.trim();
-      const gender = document.getElementById('patient-gender').value;
-      const slot = document.getElementById('consult-time').value;
-      const date = document.getElementById('appointment-date').value;
       const issue = document.getElementById('health-issue').value.trim();
 
       if (!name || !phone || !issue) {
@@ -217,24 +203,48 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Simulate successful submission and mail dispatch
-      showFormMessage('अपॉइंटमेंट अनुरोध सफलतापूर्वक दर्ज हो गया है! डॉक्टर साहब जल्द ही आपसे संपर्क करेंगे।', 'green');
-      
-      // Send data via EmailJS if configured, otherwise log to console
-      console.log("Appointment Booking Details:", { name, phone, age, gender, slot, date, issue, email: CLINIC_CONFIG.email });
+      const submitBtn = appointmentForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'भेजा जा रहा है...';
 
-      appointmentForm.reset();
+      try {
+        const formData = new FormData(appointmentForm);
+        const response = await fetch(appointmentForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          showFormMessage('✅ अपॉइंटमेंट अनुरोध सफलतापूर्वक दर्ज हो गया है! डॉक्टर साहब जल्द ही आपसे संपर्क करेंगे।', 'green');
+          appointmentForm.reset();
+        } else {
+          showFormMessage('❌ कुछ गड़बड़ हो गई, कृपया पुनः प्रयास करें या WhatsApp पर भेजें।', 'red');
+        }
+      } catch (error) {
+        showFormMessage('❌ नेटवर्क समस्या! कृपया इंटरनेट चेक करें या WhatsApp पर भेजें।', 'red');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
     });
   }
 
   if (whatsappDirectBtn) {
     whatsappDirectBtn.addEventListener('click', () => {
       const name = document.getElementById('patient-name').value.trim() || 'रोगी';
-      const phone = document.getElementById('patient-phone').value.trim() || '-';
+      const phone = document.getElementById('patient-phone').value.trim() || 'नहीं दिया';
+      const age = document.getElementById('patient-age').value.trim() || '-';
+      const slot = document.getElementById('consult-time').value;
       const issue = document.getElementById('health-issue').value.trim() || 'परामर्श चाहिए';
 
-      const waMessage = `नमस्ते डॉक्टर इस्लाम साहब,%0Aमेरा नाम: ${name}%0Aमोबाइल: ${phone}%0Aसमस्या: ${issue}%0Aकृपया मुझे सेहत होम्योपैथी दवाखाना में परामर्श हेतु समय दें।`;
-      window.open(`https://wa.me/919473298951?text=${waMessage}`, '_blank');
+      const rawText = `नमस्ते डॉक्टर इस्लाम साहब,\nमेरा नाम: ${name}\nमोबाइल: ${phone}\nआयु: ${age}\nसमय: ${slot}\nसमस्या: ${issue}\nकृपया मुझे सेहत होम्योपैथी दवाखाना में परामर्श हेतु समय दें।`;
+      const encodedText = encodeURIComponent(rawText);
+      
+      window.open(`https://api.whatsapp.com/send?phone=919473298951&text=${encodedText}`, '_blank');
     });
   }
 
